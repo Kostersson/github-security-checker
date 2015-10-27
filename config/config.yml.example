@@ -1,0 +1,11 @@
+parameters:
+  github:
+    token: Github personal access token
+    organization: Organization
+  slack:
+    webhook:  slack webhook link
+    token: USER-API-TOKEN
+    team: YOUR-TEAM
+    username: BOT-NAME
+    icon: ICON
+    parse:

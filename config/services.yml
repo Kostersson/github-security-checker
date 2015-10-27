@@ -1,0 +1,37 @@
+services:
+  slack.client:
+    class: ThreadMeUp\Slack\Client
+    arguments:
+      - %slack%
+
+  github.client:
+    class: Github\Client
+
+  github.security.checker.main:
+    class: Kostersson\GithubSecurityChecker\GithubSecurityChecker
+    arguments:
+      - %github%
+      - @github.client
+      - @github.security.checker.composer.checker
+
+  github.security.checker.composer.checker:
+    class: Kostersson\GithubSecurityChecker\ComposerChecker
+    arguments:
+      - %github%
+      - @github.client
+      - @github.security.checker.alert.handler
+
+  github.security.checker.alert.handler:
+    class: Kostersson\GithubSecurityChecker\AlertHandler
+    arguments:
+      - @github.security.checker.slack.webhook.message
+
+  github.security.checker.slack.webhook.message:
+    class: Kostersson\GithubSecurityChecker\SlackWebhookMessage
+    arguments:
+      - %slack%
+
+  github.security.checker.slack.message:
+    class: Kostersson\GithubSecurityChecker\SlackMessage
+    arguments:
+      - @slack.client

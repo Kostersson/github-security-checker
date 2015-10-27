@@ -1,0 +1,24 @@
+{
+    "name": "kostersson/github-security-checker",
+    "description": "Checks all repos which includes composer.lock with sensiolab's security checker.",
+    "require": {
+        "sensiolabs/security-checker": "^3.0",
+        "knplabs/github-api": "^1.5",
+        "symfony/yaml": "^2.7",
+        "threadmeup/slack-sdk": "dev-master",
+        "symfony/dependency-injection": "^2.7",
+        "symfony/config": "^2.7"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Pauli Kostamo",
+            "email": "pauli.kostamo@w3.fi"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Kostersson\\GithubSecurityChecker\\": "src"
+        }
+    }
+}
