@@ -50,15 +50,15 @@ class ComposerChecker
      */
     private function checkComposerLock($organization, array $repository)
     {
-        $temp_file = tempnam(sys_get_temp_dir(), 'sec');
+        $tempFile = tempnam(sys_get_temp_dir(), 'sec');
 
-        $handle = fopen($temp_file, 'w');
+        $handle = fopen($tempFile, 'w');
         fwrite($handle, $this->client->api('repo')->contents()->download($organization, $repository['name'], 'composer.lock'));
         fclose($handle);
 
         $checker = new SecurityChecker();
-        $alerts = $checker->check($temp_file);
+        $alerts = $checker->check($tempFile);
         $this->alertHandler->handleAlerts($repository, $alerts);
-        unlink($temp_file);
+        unlink($tempFile);
     }
 }
