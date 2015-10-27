@@ -1,0 +1,1 @@
+# github-security-checker
