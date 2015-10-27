@@ -2,6 +2,8 @@
 
 namespace Kostersson\GithubSecurityChecker;
 
+use Kostersson\GithubSecurityChecker\Message\MessageInterface;
+
 class AlertHandler
 {
     /**

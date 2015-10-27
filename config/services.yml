@@ -27,11 +27,11 @@ services:
       - @github.security.checker.slack.webhook.message
 
   github.security.checker.slack.webhook.message:
-    class: Kostersson\GithubSecurityChecker\SlackWebhookMessage
+    class: Kostersson\GithubSecurityChecker\Message\SlackWebhookMessage
     arguments:
       - %slack%
 
   github.security.checker.slack.message:
-    class: Kostersson\GithubSecurityChecker\SlackMessage
+    class: Kostersson\GithubSecurityChecker\Messaging\SlackMessage
     arguments:
       - @slack.client

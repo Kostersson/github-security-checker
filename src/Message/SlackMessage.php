@@ -1,6 +1,6 @@
 <?php
 
-namespace Kostersson\GithubSecurityChecker;
+namespace Kostersson\GithubSecurityChecker\Message;
 
 use ThreadMeUp\Slack\Client;
 
