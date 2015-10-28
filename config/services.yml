@@ -22,7 +22,7 @@ services:
       - @github.security.checker.alert.handler
 
   github.security.checker.alert.handler:
-    class: Kostersson\GithubSecurityChecker\AlertHandler
+    class: Kostersson\GithubSecurityChecker\AlertHandler\AlertHandler
     arguments:
       - @github.security.checker.slack.webhook.message
 

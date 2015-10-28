@@ -1,10 +1,10 @@
 <?php
 
-namespace Kostersson\GithubSecurityChecker;
+namespace Kostersson\GithubSecurityChecker\AlertHandler;
 
 use Kostersson\GithubSecurityChecker\Message\MessageInterface;
 
-class AlertHandler
+class AlertHandler implements AlertHandlerInterface
 {
     /**
      * @var MessageInterface

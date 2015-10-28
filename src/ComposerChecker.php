@@ -3,6 +3,7 @@
 namespace Kostersson\GithubSecurityChecker;
 
 use Github\Client;
+use Kostersson\GithubSecurityChecker\AlertHandler\AlertHandlerInterface;
 use SensioLabs\Security\SecurityChecker;
 
 class ComposerChecker
@@ -23,11 +24,11 @@ class ComposerChecker
     private $alertHandler;
 
     /**
-     * @param array        $githubSettings
-     * @param Client       $client
-     * @param AlertHandler $alertHandler
+     * @param array                 $githubSettings
+     * @param Client                $client
+     * @param AlertHandlerInterface $alertHandler
      */
-    public function __construct(array $githubSettings, Client $client, AlertHandler $alertHandler)
+    public function __construct(array $githubSettings, Client $client, AlertHandlerInterface $alertHandler)
     {
         $this->githubSettings = $githubSettings;
         $this->client = $client;
