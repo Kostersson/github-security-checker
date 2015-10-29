@@ -6,7 +6,10 @@ interface AlertHandlerInterface
 {
     /**
      * @param array $repository
+     * @param array $contributors
      * @param array $alerts
+     *
+     * @return
      */
-    public function handleAlerts(array $repository, array $alerts);
+    public function handleAlerts(array $repository, array $contributors, array $alerts);
 }

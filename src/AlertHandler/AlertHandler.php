@@ -21,14 +21,19 @@ class AlertHandler implements AlertHandlerInterface
 
     /**
      * @param array $repository
+     * @param array $contributors
      * @param array $alerts
      */
-    public function handleAlerts(array $repository, array $alerts)
+    public function handleAlerts(array $repository, array $contributors, array $alerts)
     {
         if (count($alerts) === 0) {
             return;
         }
-        $str = 'Repository name: '.$repository['name']."\n";
+        $str = '';
+        foreach ($contributors as $contributor) {
+            $str .= '<@'.$contributor['login'].'> ';
+        }
+        $str .= '\nRepository name: '.$repository['name']."\n";
         $str .= "----------------------------------------------\n";
         foreach ($alerts as $project => $alert) {
             $str .= $project.' version: '.$alert['version'];
@@ -40,6 +45,7 @@ class AlertHandler implements AlertHandlerInterface
             }
             $str .= "----------------------------------------------\n";
         }
+        $str .= "#####################################################\n";
         $this->messageInterface->sendAlertMessage($str);
     }
 }

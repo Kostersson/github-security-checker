@@ -7,6 +7,9 @@ services:
   github.client:
     class: Github\Client
 
+  security.checker:
+    class: SensioLabs\Security\SecurityChecker
+
   github.security.checker.main:
     class: Kostersson\GithubSecurityChecker\GithubSecurityChecker
     arguments:
@@ -19,6 +22,7 @@ services:
     arguments:
       - %github%
       - @github.client
+      - @security.checker
       - @github.security.checker.alert.handler
 
   github.security.checker.alert.handler:

@@ -19,6 +19,11 @@ class ComposerChecker
     private $client;
 
     /**
+     * @var SecurityChecker
+     */
+    private $securityChecker;
+
+    /**
      * @var AlertHandler
      */
     private $alertHandler;
@@ -26,12 +31,14 @@ class ComposerChecker
     /**
      * @param array                 $githubSettings
      * @param Client                $client
+     * @param SecurityChecker       $securityChecker
      * @param AlertHandlerInterface $alertHandler
      */
-    public function __construct(array $githubSettings, Client $client, AlertHandlerInterface $alertHandler)
+    public function __construct(array $githubSettings, Client $client, SecurityChecker $securityChecker, AlertHandlerInterface $alertHandler)
     {
         $this->githubSettings = $githubSettings;
         $this->client = $client;
+        $this->securityChecker = $securityChecker;
         $this->alertHandler = $alertHandler;
     }
 
@@ -57,9 +64,9 @@ class ComposerChecker
         fwrite($handle, $this->client->api('repo')->contents()->download($organization, $repository['name'], 'composer.lock'));
         fclose($handle);
 
-        $checker = new SecurityChecker();
-        $alerts = $checker->check($tempFile);
-        $this->alertHandler->handleAlerts($repository, $alerts);
+        $alerts = $this->securityChecker->check($tempFile);
+        $contributors = $this->client->api('repo')->contributors($organization, $repository['name']);
+        $this->alertHandler->handleAlerts($repository, $contributors, $alerts);
         unlink($tempFile);
     }
 }
