@@ -2,7 +2,7 @@
 
 [![Code Climate](https://codeclimate.com/github/Kostersson/github-security-checker/badges/gpa.svg)](https://codeclimate.com/github/Kostersson/github-security-checker)
 
-This tool checks organizations repositories with [sensiolabs/security-checker](https://github.com/sensiolabs/security-checker), and informs reported vulnerabilities to slack.
+This tool checks organization's repositories with [sensiolabs/security-checker](https://github.com/sensiolabs/security-checker), and informs reported vulnerabilities to slack (or wherewer you want).
 
 - [Vulnerability alert handlers](src/AlertHandler)
 - [Outgoing messages](src/Message)
